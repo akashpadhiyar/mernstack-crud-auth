@@ -8,8 +8,19 @@ function Register() {
     
     const submitValue = (event) => {
         axios.post('http://127.0.0.1:4000/register',{name,mobile,email,password})
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .then(res => {
+            console.log(res)
+            if(res.data.flag===1){
+                alert('Registration successful')
+            }else{
+                alert('Something went wrong');
+            }
+        })
+        .catch((error) => {
+            alert("Error Ocurred :"+ error);
+            console.log(error)
+        })
+        event.target.reset();
         event.preventDefault();
     }
     return (
